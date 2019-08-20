@@ -644,6 +644,9 @@ namespace CommonMark.Parser
 
                 if (!indented && curChar == '>')
                 {
+                    if(ln.Length > offset + 2 && ln[offset + 1] == '\t' && ln[offset + 2] != '\t') {
+                        ln = ln.Insert(offset + 2, "\t");
+                    }
 
                     AdvanceOffset(ln, first_nonspace + 1 - offset, false, ref offset, ref column, ref remainingSpaces);
                     AdvanceOptionalSpace(ln, ref offset, ref column, ref remainingSpaces);
